@@ -13,8 +13,6 @@ const App = () => {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    // 여기에 데이터를 가져오는 API 엔드포인트를 입력하세요.
-    // 예시: axios.get('https://api.example.com/contents')
     axios.get('https://closet-recruiting-api.azurewebsites.net/api/data')
       .then((response) => {
         setContents(response.data);
