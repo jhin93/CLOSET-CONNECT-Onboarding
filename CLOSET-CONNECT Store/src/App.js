@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PricingOption, setPricingOption, setSearchKeyword } from './app/store';
 import axios from 'axios';
-import './App.css'; // index.css 대신에 App.css를 불러옵니다.
+import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();

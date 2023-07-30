@@ -1,4 +1,4 @@
-// actions.js
+
 const setPricingOption = (pricingOptions) => ({
     type: 'SET_PRICING_OPTION',
     payload: pricingOptions,

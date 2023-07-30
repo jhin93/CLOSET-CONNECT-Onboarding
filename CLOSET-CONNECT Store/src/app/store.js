@@ -28,7 +28,6 @@ const contentSlice = createSlice({
 
 export const { setPricingOption, setSearchKeyword } = contentSlice.actions;
 
-// Store
 export default configureStore({
   reducer: contentSlice.reducer,
 });
