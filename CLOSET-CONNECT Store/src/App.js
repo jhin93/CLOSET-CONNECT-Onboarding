@@ -13,7 +13,7 @@ const App = () => {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    axios.get('https://www.test.com/api/data')
+    axios.get('https://closet-recruiting-api.azurewebsites.net/api/data')
       .then((response) => {
         setContents(response.data);
       })
