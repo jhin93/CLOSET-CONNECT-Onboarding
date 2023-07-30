@@ -2,40 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PricingOption, setPricingOption, setSearchKeyword } from './app/store';
 import axios from 'axios';
-import styled from 'styled-components';
+import { AppWrapper, ContentItem, PricingOptionLabel } from './styles'; // 새로운 styles 파일 추가
 
-const AppWrapper = styled.div`
-  padding: 20px;
-`;
-
-const ContentItem = styled.li`
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-
-  img {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-  }
-
-  p {
-    margin: 0;
-    padding: 5px;
-  }
-
-  .title {
-    font-weight: bold;
-  }
-
-  .price {
-    color: green;
-  }
-`;
-
-const PricingOptionLabel = styled.label`
-  margin-right: 15px;
-`;
 
 const App = () => {
   const dispatch = useDispatch();
