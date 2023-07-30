@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PricingOption, setPricingOption, setSearchKeyword } from './app/store';
 import axios from 'axios';
-import { AppWrapper, ContentItem, PricingOptionLabel } from './styles'; // 새로운 styles 파일 추가
-
+import './App.css'; // index.css 대신에 App.css를 불러옵니다.
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const App = () => {
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    axios.get('https://closet-recruiting-api.azurewebsites.net/api/data')
+    axios.get('https://www.test.com/api/data')
       .then((response) => {
         setContents(response.data);
       })
@@ -59,33 +58,33 @@ const App = () => {
   };
 
   return (
-    <AppWrapper>
+    <div className="App">
       <h1>Contents List</h1>
-      <div>
-        <PricingOptionLabel>
+      <div className="label-container">
+        <label>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.PAID)}
             onChange={() => handlePricingOptionChange(PricingOption.PAID)}
           />
           Paid Option
-        </PricingOptionLabel>
-        <PricingOptionLabel>
+        </label>
+        <label>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.FREE)}
             onChange={() => handlePricingOptionChange(PricingOption.FREE)}
           />
           Free Option
-        </PricingOptionLabel>
-        <PricingOptionLabel>
+        </label>
+        <label>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.VIEW_ONLY)}
             onChange={() => handlePricingOptionChange(PricingOption.VIEW_ONLY)}
           />
           View Only Option
-        </PricingOptionLabel>
+        </label>
         <button onClick={handleReset}>Reset</button>
       </div>
       <div>
@@ -98,7 +97,7 @@ const App = () => {
       </div>
       <ul>
         {searchResult.map((content) => (
-          <ContentItem key={content.id}>
+          <li key={content.id}>
             <img src={content.imagePath} alt={content.title} />
             <div>
               <p className="title">{content.title}</p>
@@ -108,10 +107,10 @@ const App = () => {
                 <p className="price">Price: {content.price}</p>
               )}
             </div>
-          </ContentItem>
+          </li>
         ))}
       </ul>
-    </AppWrapper>
+    </div>
   );
 };
 
