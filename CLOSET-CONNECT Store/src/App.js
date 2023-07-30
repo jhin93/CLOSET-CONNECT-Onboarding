@@ -1,8 +1,41 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PricingOption, setPricingOption, setSearchKeyword } from './app/store';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const AppWrapper = styled.div`
+  padding: 20px;
+`;
+
+const ContentItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+
+  p {
+    margin: 0;
+    padding: 5px;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .price {
+    color: green;
+  }
+`;
+
+const PricingOptionLabel = styled.label`
+  margin-right: 15px;
+`;
 
 const App = () => {
   const dispatch = useDispatch();
@@ -58,33 +91,33 @@ const App = () => {
   };
 
   return (
-    <div>
+    <AppWrapper>
       <h1>Contents List</h1>
       <div>
-        <label>
+        <PricingOptionLabel>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.PAID)}
             onChange={() => handlePricingOptionChange(PricingOption.PAID)}
           />
           Paid Option
-        </label>
-        <label>
+        </PricingOptionLabel>
+        <PricingOptionLabel>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.FREE)}
             onChange={() => handlePricingOptionChange(PricingOption.FREE)}
           />
           Free Option
-        </label>
-        <label>
+        </PricingOptionLabel>
+        <PricingOptionLabel>
           <input
             type="checkbox"
             checked={pricingOptions.includes(PricingOption.VIEW_ONLY)}
             onChange={() => handlePricingOptionChange(PricingOption.VIEW_ONLY)}
           />
           View Only Option
-        </label>
+        </PricingOptionLabel>
         <button onClick={handleReset}>Reset</button>
       </div>
       <div>
@@ -97,15 +130,20 @@ const App = () => {
       </div>
       <ul>
         {searchResult.map((content) => (
-          <li key={content.id}>
+          <ContentItem key={content.id}>
             <img src={content.imagePath} alt={content.title} />
-            <p>{content.title}</p>
-            <p>Creator: {content.creator}</p>
-            <p>Pricing Option: {content.pricingOption}</p>
-          </li>
+            <div>
+              <p className="title">{content.title}</p>
+              <p>Creator: {content.creator}</p>
+              <p>Pricing Option: {content.pricingOption}</p>
+              {content.pricingOption === PricingOption.PAID && (
+                <p className="price">Price: {content.price}</p>
+              )}
+            </div>
+          </ContentItem>
         ))}
       </ul>
-    </div>
+    </AppWrapper>
   );
 };
 
