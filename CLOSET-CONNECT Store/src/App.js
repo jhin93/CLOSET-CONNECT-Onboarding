@@ -59,53 +59,68 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Contents List</h1>
-      <div className="label-container">
-        <label>
-          <input
-            type="checkbox"
-            checked={pricingOptions.includes(PricingOption.PAID)}
-            onChange={() => handlePricingOptionChange(PricingOption.PAID)}
-          />
-          Paid Option
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={pricingOptions.includes(PricingOption.FREE)}
-            onChange={() => handlePricingOptionChange(PricingOption.FREE)}
-          />
-          Free Option
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={pricingOptions.includes(PricingOption.VIEW_ONLY)}
-            onChange={() => handlePricingOptionChange(PricingOption.VIEW_ONLY)}
-          />
-          View Only Option
-        </label>
-        <button onClick={handleReset}>Reset</button>
-      </div>
       <div>
         <input
           type="text"
+          className='searchBar'
           value={searchInput}
           onChange={handleSearchInputChange}
-          placeholder="Search by name or title"
+          placeholder="Find the Items you're looking for"
+          style={{ color: "white" }}
         />
+      </div>
+      <div className="label-container">
+        <div className='containerLeft'>
+          <p>Pricing Options</p>
+          <label>
+            <input
+              type="checkbox"
+              checked={pricingOptions.includes(PricingOption.PAID)}
+              onChange={() => handlePricingOptionChange(PricingOption.PAID)}
+            />
+            Paid Option
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={pricingOptions.includes(PricingOption.FREE)}
+              onChange={() => handlePricingOptionChange(PricingOption.FREE)}
+            />
+            Free Option
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={pricingOptions.includes(PricingOption.VIEW_ONLY)}
+              onChange={() => handlePricingOptionChange(PricingOption.VIEW_ONLY)}
+            />
+            View Only Option
+          </label>
+        </div>
+        <div className='containerRight'>
+          <button onClick={handleReset}>Reset</button>
+        </div>
       </div>
       <ul>
         {searchResult.map((content) => (
           <li key={content.id}>
             <img src={content.imagePath} alt={content.title} />
-            <div>
-              <p className="title">{content.title}</p>
-              <p>Creator: {content.creator}</p>
-              <p>Pricing Option: {content.pricingOption}</p>
-              {content.pricingOption === PricingOption.PAID && (
-                <p className="price">Price: {content.price}</p>
-              )}
+            <div className="textDiv">
+              <div className='itemInfo'>
+                <p className="itemTitle">{content.title}</p>
+                <p className="itemCreator">{content.creator}</p>
+              </div>
+              <div className='itemPrice'>
+                {content.pricingOption === PricingOption.PAID && (
+                  <p className="price">$ {content.price}</p>
+                )}
+                {content.pricingOption === PricingOption.FREE && (
+                  <p className="price">FREE</p>
+                )}
+                {content.pricingOption === PricingOption.VIEW_ONLY && (
+                  <p className="price">VIEW_ONLY</p>
+                )}
+              </div>
             </div>
           </li>
         ))}

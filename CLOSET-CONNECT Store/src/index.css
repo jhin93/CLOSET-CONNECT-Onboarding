@@ -3,8 +3,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
 }
 
 code {
@@ -13,7 +15,15 @@ code {
 }
 /* index.css */
 .App {
-  padding: 20px;
+  padding: 30px;
+  background-color: #1B1A20;
+}
+
+.section {
+  color: #86D5A2;
+  font-size: 18px;
+  font-weight: 800;
+  text-align: left;
 }
 
 ul {
@@ -23,18 +33,56 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  
+  border: 2px solid #86D5A2;
+  border-radius: 6px;
 }
 
 li {
   width: 25%; /* 기본 값: 4개 컬럼 */
-  padding: 10px;
+  height: auto;
+  padding: 15px;
   box-sizing: border-box;
 }
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 72%;
   margin-right: 10px;
+}
+
+.textDiv {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+.itemInfo {
+  text-align: left;
+}
+
+.itemInfo > p {
+  margin: 0;
+}
+
+.itemTitle {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
+.itemCreator {
+  font-size: 12px;
+  padding-bottom: 4px;
+}
+
+.itemPrice {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.price {
+  margin: 0;
 }
 
 @media (max-width: 1200px) {
@@ -59,9 +107,47 @@ img {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
+  border: 2px solid #86D5A2;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 40px;
+  background-color: #000;
+}
+
+.containerLeft {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.containerLeft > p {
+  margin: 0 20px;
+}
+
+.containerRight > button {
+  margin-right: 10px;
 }
 
 label {
   margin-right: 15px;
+}
+
+.searchBar {
+  background-color: #212026;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  border: none;
+  margin: 20px 0;
+}
+
+.searchBar input {
+  color: blue;
+}
+
+.searchBar::placeholder {
+  color: grey;
+  font-weight: 600;
+  padding: 20px;
 }
