@@ -1,7 +1,8 @@
 // store.js
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 
-// Enum for PricingOption
 export const PricingOption = {
   PAID: 0,
   FREE: 1,
@@ -26,8 +27,19 @@ const contentSlice = createSlice({
   },
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, contentSlice.reducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+});
+
+export const persistor = persistStore(store);
+
 export const { setPricingOption, setSearchKeyword } = contentSlice.actions;
 
-export default configureStore({
-  reducer: contentSlice.reducer,
-});
+export default store;

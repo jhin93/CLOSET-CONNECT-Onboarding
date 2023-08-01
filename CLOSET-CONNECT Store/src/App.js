@@ -1,8 +1,10 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PricingOption, setPricingOption, setSearchKeyword } from './app/store';
 import axios from 'axios';
 import './App.css';
+import { persistor } from './app/store'; // persistor를 불러오기
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +58,11 @@ const App = () => {
     dispatch(setSearchKeyword(''));
     setSearchInput('');
   };
+
+  // persistor를 이용하여 상태를 재구성합니다.
+  useEffect(() => {
+    persistor.persist();
+  }, []);
 
   return (
     <div className="App">
